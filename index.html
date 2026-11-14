@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f5">
+<meta name="description" content="Sebuah kejutan kecil dari Wahyu untuk Khaldaa. Baca, jawab dengan nyaman, dan nikmati ceritanya.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Khusus buat Khaldaa">
+<meta property="og:description" content="Ada sesuatu yang ingin Wahyu sampaikan. Baca pelan-pelan, ya.">
+<meta property="og:url" content="https://klik-aja-one.vercel.app/">
+<meta property="og:image" content="https://klik-aja-one.vercel.app/og-preview.png">
+<meta property="og:image:alt" content="Kejutan kecil dari Wahyu untuk Khaldaa dengan ilustrasi beruang teddy">
+<meta name="twitter:title" content="Khusus buat Khaldaa">
+<meta name="twitter:description" content="Ada sesuatu yang ingin Wahyu sampaikan. Baca pelan-pelan, ya.">
+<meta name="twitter:image" content="https://klik-aja-one.vercel.app/og-preview.png">
+<meta name="twitter:card" content="summary">
+<title>Khusus buat Khaldaa — dari Wahyu</title>
+<style>
+  :root {
+    --pink: #f5a9c5;
+    --pink-dark: #c6537c;
+    --rose: #ffe3ed;
+    --cream: #fff9fb;
+    --ink: #65394b;
+    --muted: #956879;
+    --white: #fff;
+    --shadow: 0 18px 55px rgba(185, 93, 128, .14);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; min-height: 100vh; overflow-x: hidden;
+    font-family: ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(ellipse at 8% 8%, rgba(255, 204, 222, .6), transparent 34%),
+      radial-gradient(ellipse at 92% 82%, rgba(255, 222, 233, .75), transparent 35%),
+      linear-gradient(135deg, #fff8fb, #fff0f5 52%, #fff9fc);
+  }
+  button { font: inherit; cursor: pointer; border: 0; }
+  button:focus-visible { outline: 3px solid #b64b75; outline-offset: 4px; }
+  .ambient { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+  .floaty { position: absolute; opacity: .42; animation: drift linear infinite; user-select: none; }
+  @keyframes drift { from { transform: translateY(110vh) rotate(0); } to { transform: translateY(-15vh) rotate(360deg); } }
+  .page { position: relative; z-index: 1; width: min(100% - 30px, 760px); margin: 0 auto; padding: 28px 0 50px; }
+  header { display: flex; justify-content: center; align-items: center; gap: 9px; color: var(--pink-dark); font-weight: 800; letter-spacing: .08em; font-size: .78rem; text-transform: uppercase; }
+  .card {
+    margin: 24px auto 0; background: rgba(255,255,255,.84); border: 1px solid rgba(255,255,255,.95);
+    border-radius: 30px; padding: clamp(24px, 6vw, 48px); box-shadow: var(--shadow); backdrop-filter: blur(10px);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .eyebrow { color: var(--pink-dark); font-size: .8rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+  h1 { font-size: clamp(2.15rem, 7vw, 4rem); line-height: 1.08; margin: 15px 0; letter-spacing: -.045em; }
+  h2 { font-size: clamp(1.5rem, 5vw, 2.25rem); line-height: 1.2; margin: 12px 0; letter-spacing: -.025em; }
+  p { line-height: 1.7; color: var(--muted); margin: 10px 0; }
+  .bear-illustration { width: clamp(112px, 28vw, 158px); margin: 0 auto 8px; animation: teddyBob 2.8s ease-in-out infinite; }
+  .bear-illustration svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 10px 13px rgba(191, 130, 145, .2)); }
+  @keyframes teddyBob { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-9px) rotate(3deg); } }
+  .btn {
+    min-height: 50px; border-radius: 999px; padding: 13px 24px; font-weight: 800; transition: transform .18s, box-shadow .18s, background .18s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { color: white; background: linear-gradient(135deg, #ed8fb2, #d96591); box-shadow: 0 9px 22px rgba(211, 93, 139, .25); }
+  .btn-soft { color: var(--pink-dark); background: #fff0f5; border: 1px solid #f8d5e2; }
+  .btn-ghost { color: var(--muted); background: transparent; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 25px; }
+  .hidden { display: none !important; }
+  .progress-wrap { margin: 0 auto 24px; max-width: 450px; }
+  .progress-meta { display: flex; justify-content: space-between; font-size: .8rem; font-weight: 700; color: #b77a91; margin-bottom: 8px; }
+  .progress { height: 8px; border-radius: 20px; background: #fbe3ec; overflow: hidden; }
+  .progress-bar { height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, #f4b3cc, #d96591); transition: width .45s ease; }
+  .question-emoji { font-size: 3.2rem; margin-bottom: 8px; }
+  .options { display: grid; gap: 12px; margin-top: 25px; }
+  .option {
+    width: 100%; padding: 15px 17px; border-radius: 17px; color: var(--ink); text-align: left; font-weight: 650;
+    background: #fff7fa; border: 1px solid #f7dce6; transition: .18s;
+  }
+  .option:hover:not(:disabled) { background: #ffedf4; border-color: #efa4c0; transform: translateY(-1px); }
+  .option:disabled { cursor: default; }
+  .option[aria-pressed="true"] { background: #ffedf4; border-color: #df83a7; box-shadow: 0 0 0 2px rgba(223,131,167,.12); }
+  .quiz-controls { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+  .quiz-controls .btn { width: auto; min-width: 132px; }
+  .card:focus { outline: none; }
+  .question-title:focus { outline: 2px solid #df83a7; outline-offset: 5px; border-radius: 5px; }
+  .bear-celebration { transform: rotate(-2deg); }
+  .bear-celebration svg { filter: drop-shadow(0 10px 13px rgba(191, 130, 145, .2)); }
+  .feedback { min-height: 48px; margin-top: 17px; color: var(--pink-dark); font-weight: 750; line-height: 1.5; }
+  .note { font-size: .85rem; color: #b17e91; margin-top: 18px; }
+  .letter-intro { max-width: 560px; margin: 0 auto 18px; }
+  .letter {
+    text-align: left; background: linear-gradient(160deg, #fff9fb, #fff0f5); border: 1px solid #f8dbe6;
+    padding: clamp(20px, 5vw, 32px); border-radius: 20px; margin-top: 22px; line-height: 1.85;
+  }
+  .letter p { color: #80566a; }
+  .signature { text-align: right; color: var(--pink-dark); font-weight: 800; margin-top: 20px; }
+  .proposal-buttons { position: relative; min-height: 90px; display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 22px; }
+  #noBtn { position: static; }
+  .tiny { font-size: .78rem; color: #b17e91; }
+  .confetti { position: fixed; z-index: 5; top: -20px; pointer-events: none; animation: fall 3.5s linear forwards; }
+  @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: .15; } }
+  @media (max-width: 520px) {
+    .page { width: min(100% - 20px, 760px); padding-top: 20px; }
+    .card { border-radius: 24px; margin-top: 18px; }
+    .btn { width: 100%; }
+    .proposal-buttons { gap: 10px; }
+    #noBtn { width: 100%; }
+    .quiz-controls { display: grid; grid-template-columns: 1fr 1fr; }
+    .quiz-controls #nextBtn { grid-column: 1 / -1; }
+    .quiz-controls .btn { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+<div class="ambient" id="ambient" aria-hidden="true"></div>
+<main class="page">
+  <header><span>Ini aku bikin khusus cuma buat kamu</span></header>
+
+  <section class="card" id="welcome" tabindex="-1" aria-labelledby="welcomeTitle">
+    <div class="bear-illustration" role="img" aria-label="Ilustrasi beruang teddy berwarna cokelat muda">
+      <svg viewBox="0 0 180 170" aria-hidden="true">
+        <ellipse cx="90" cy="151" rx="49" ry="8" fill="#e8b8c5" opacity=".35"/>
+        <circle cx="48" cy="42" r="23" fill="#b87958"/>
+        <circle cx="132" cy="42" r="23" fill="#b87958"/>
+        <circle cx="48" cy="42" r="12" fill="#e8b49a"/>
+        <circle cx="132" cy="42" r="12" fill="#e8b49a"/>
+        <ellipse cx="90" cy="91" rx="54" ry="55" fill="#c98b68"/>
+        <ellipse cx="90" cy="119" rx="29" ry="22" fill="#e9c3a9"/>
+        <ellipse cx="90" cy="77" rx="34" ry="28" fill="#e9c3a9"/>
+        <circle cx="77" cy="75" r="4.2" fill="#56392f"/>
+        <circle cx="103" cy="75" r="4.2" fill="#56392f"/>
+        <ellipse cx="90" cy="87" rx="7" ry="5.5" fill="#56392f"/>
+        <path d="M90 93 Q83 101 77 95 M90 93 Q97 101 103 95" fill="none" stroke="#56392f" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="56" cy="124" rx="17" ry="22" fill="#c98b68" transform="rotate(25 56 124)"/>
+        <ellipse cx="124" cy="124" rx="17" ry="22" fill="#c98b68" transform="rotate(-25 124 124)"/>
+        <path d="M90 108 C81 99 69 109 90 125 C111 109 99 99 90 108Z" fill="#d96591"/>
+      </svg>
+    </div>
+    
+    <h1 id="welcomeTitle">Hai, Khaldaa..<br><span style="color:var(--pink-dark)">aku mau nanya,<br>jawab yang jujur ya..</span></h1>
+    
+    <p><strong>Kalau udah siap, klik mulai aja. cakra.. cakra.. cakra..!! 😊</strong></p>
+    <div class="actions"><button class="btn btn-primary" id="startBtn">Mulai</button></div>
+    
+  </section>
+
+  <section class="card hidden" id="quiz" tabindex="-1" aria-label="Pertanyaan interaktif">
+    <div class="progress-wrap">
+      <div class="progress-meta"><span id="progressLabel">Pertanyaan 1 dari 5</span><span>💗</span></div>
+      <div class="progress" role="progressbar" aria-label="Progres pertanyaan" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" id="progressTrack"><div class="progress-bar" id="progressBar"></div></div>
+    </div>
+    <div class="question-emoji" id="qEmoji">🐛</div>
+    <div class="eyebrow">Ini pertanyaan penting (katanya)</div>
+    <h2 id="question" class="question-title" tabindex="-1">Kalau aku berubah jadi cacing…</h2>
+    <p id="questionSub">Jawab dengan jujur ya, calon penghuni hatiku.</p>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback" aria-live="polite"></div>
+    <div class="quiz-controls">
+      <button class="btn btn-soft hidden" id="backQuestionBtn" type="button">← Sebelumnya</button>
+      <button class="btn btn-soft hidden" id="changeAnswerBtn" type="button">Ubah jawaban</button>
+      <button class="btn btn-primary hidden" id="nextBtn" type="button">Lanjut ➜</button>
+    </div>
+  </section>
+
+  <section class="card hidden" id="letterSection" tabindex="-1" aria-label="Surat untuk Khaldaa">
+    <p class="letter-intro">Hehe.. ternyata pertanyaannya lumayan banyak ya. Sekarang aku mau menyampaikan sesuatu yang sedikit lebih serius. Baca pelan-pelan, ya. 😊</p>
+    <div class="eyebrow">baca pelan-pelan ya</div>
+    <h2>Buat kamu, orang terfavoritku</h2>
+    <div class="letter">
+      <p><strong>Dear Khaldaa,</strong></p>
+      <p>Aku senang bisa kenal kamu sejauh ini. Walaupun belum lama, ada sesuatu dari kamu yang bikin aku ingin mengenalmu lebih jauh—mendengar cerita kamu, memahami cara kamu berpikir, dan mengenal hal-hal sederhana tentang kamu.</p>
+      <p>Aku mau jujur, aku ingin mengenal kamu bukan sekadar untuk punya teman ngobrol atau mengisi waktu luang. Niatku lebih serius: membangun hubungan yang baik dan, jika kita saling cocok serta diberi kesempatan, menuju jenjang pernikahan.</p>
+      <p>Aku paham pernikahan bukan hal sederhana dan nggak ingin terburu-buru. Aku ingin kita saling mengenal lebih dalam, memahami kelebihan serta kekurangan masing-masing, dan melihat apakah tujuan serta nilai hidup kita sejalan.</p>
+      <p>Aku nggak bisa janji semuanya akan selalu mudah. Tapi niatku bukan untuk main-main. Kalau kamu bersedia, aku ingin menjalani proses ini dengan sungguh-sungguh, saling mengenal, dan saling menjaga.</p>
+      <p>Aku ingin mengenal kamu lebih jauh, bukan hanya untuk hari ini, tetapi dengan harapan suatu saat nanti kita bisa saling memilih sebagai pasangan hidup.</p>
+      <p class="signature"><strong>Wahyu</strong></p>
+    </div>
+    <div class="actions"><button class="btn btn-primary" id="proposalBtn">Buka pertanyaan terakhir</button></div>
+  </section>
+
+  <section class="card hidden" id="proposal" tabindex="-1" aria-label="Pertanyaan terakhir">
+    <div class="eyebrow">Pertanyaan terakhir</div>
+    <h1 style="font-size:clamp(2rem,7vw,3.5rem)">Khaldaa,<br><span style="color:var(--pink-dark)">kamu mau gak kasih aku kesempatan buat kenal kamu lebih jauh?</span></h1>
+    <p>Aku tahu kita belum lama kenal. Aku ingin mengenal kamu lebih jauh dengan niat yang serius, tapi tetap mengikuti kenyamanan kita berdua. Kamu nggak harus menjawab iya sekarang. Kalau belum siap atau memang tidak ingin, aku akan tetap menghargainya.</p>
+    <div class="proposal-buttons" id="proposalButtons">
+      <button class="btn btn-primary" id="yesBtn">Iya, aku mau 😊</button>
+      <button class="btn btn-soft" id="noBtn">Belum / tidak dulu</button>
+    </div>
+  </section>
+
+
+  <section class="card hidden" id="decline" tabindex="-1" aria-label="Jawaban dan ucapan terima kasih" aria-live="polite">
+    <div class="eyebrow">Terima kasih sudah jujur</div>
+    <h1 style="color:var(--pink-dark)">Nggak apa-apa, Khaldaa. 😊</h1>
+    <p>Makasih sudah membaca sampai sini dan menyampaikan jawaban kamu. Aku tetap menghargai keputusanmu. Nggak ada paksaan dan kamu nggak perlu merasa nggak enak.</p>
+    <p>Semoga kita tetap bisa saling menghormati dan menjalani hari dengan baik.</p>
+    <div class="actions"><button class="btn btn-soft" id="backToWelcome">Kembali ke halaman awal</button></div>
+  </section>
+
+  <section class="card hidden" id="success" tabindex="-1" aria-label="Ucapan terima kasih">
+    <div class="bear-illustration bear-celebration" role="img" aria-label="Beruang teddy sedang memegang bunga">
+      <svg viewBox="0 0 180 170" aria-hidden="true">
+        <ellipse cx="90" cy="151" rx="49" ry="8" fill="#e8b8c5" opacity=".35"/>
+        <circle cx="48" cy="42" r="23" fill="#b87958"/><circle cx="132" cy="42" r="23" fill="#b87958"/>
+        <circle cx="48" cy="42" r="12" fill="#e8b49a"/><circle cx="132" cy="42" r="12" fill="#e8b49a"/>
+        <ellipse cx="90" cy="91" rx="54" ry="55" fill="#c98b68"/>
+        <ellipse cx="90" cy="119" rx="29" ry="22" fill="#e9c3a9"/>
+        <ellipse cx="90" cy="77" rx="34" ry="28" fill="#e9c3a9"/>
+        <path d="M72 75 Q78 68 84 75 M96 75 Q102 68 108 75" fill="none" stroke="#56392f" stroke-width="3.5" stroke-linecap="round"/>
+        <ellipse cx="90" cy="88" rx="7" ry="5.5" fill="#56392f"/>
+        <path d="M90 94 Q83 102 77 96 M90 94 Q97 102 103 96" fill="none" stroke="#56392f" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="55" cy="123" rx="17" ry="22" fill="#c98b68" transform="rotate(25 55 123)"/>
+        <ellipse cx="123" cy="123" rx="17" ry="22" fill="#c98b68" transform="rotate(-25 123 123)"/>
+        <path d="M113 125 Q128 110 137 95" fill="none" stroke="#6e9a68" stroke-width="4" stroke-linecap="round"/>
+        <path d="M126 111 Q139 107 139 119 Q130 122 126 111Z" fill="#80ad78"/>
+        <g transform="translate(139 88)">
+          <ellipse cy="-10" rx="5" ry="9" fill="#e58aad"/><ellipse cy="10" rx="5" ry="9" fill="#e58aad"/>
+          <ellipse cx="-10" rx="9" ry="5" fill="#e58aad"/><ellipse cx="10" rx="9" ry="5" fill="#e58aad"/>
+          <circle r="5" fill="#f6ce78"/>
+        </g>
+      </svg>
+    </div>
+    <div class="eyebrow">Alhamdulillah</div>
+    <h1 style="color:var(--pink-dark)">Yuk.. kita mulai<br>cerita yang baru! 🎉</h1>
+    <p>Makasih ya, udah kasih aku kesempatan. Kita jalani pelan-pelan, saling mengenal, saling memahami, dan semoga tumbuh jadi sesuatu yang indah.</p>
+    <h2>Aku senang banget bisa kenal kamu lebih jauh.</h2>
+    <p>Semoga ini jadi awal yang baik buat kita ke depannya. Aamiin. 😊</p>
+    <div class="actions"><button class="btn btn-soft" id="replayBtn">Ulangi dari awal</button></div>
+  </section>
+  
+</main>
+
+<script>
+(() => {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+  const sections = ["welcome", "quiz", "letterSection", "proposal", "decline", "success"];
+  const questions = [
+    {
+      emoji: "😊",
+      title: "kamu ngerasa keganggu gak kalau aku sering chat atau telpon kamu?",
+      sub: "Jawab santai aja, aku pengin tahu.",
+      options: ["Gak kok 😊", "Lumayan.. tapi masih aman", "Ganggu kalau isinya cuma ngobrolin kerjaan aja, hehe.."],
+      replies: [
+        "Wihh, aku senang dengarnya. Nanti kita cari topik obrolan yang lebih seru juga. 😊",
+        "Okee, aku paham. Aku bakal tetap perhatikan waktu dan kenyamanan kamu.",
+        "Wkwk, masuk akal. Berarti kita perlu ngobrolin hal lain juga. Btw, menurut kamu bumi itu bulat apa datar? 😂"
+      ]
+    },
+    {
+      emoji: "✨",
+      title: "Dari beberapa kali kita ngobrol atau kerja bareng, momen apa yang paling kamu ingat?",
+      sub: "Penasaran aja, siapa tahu samaan kita. Hehe..",
+      options: ["waktu di halim", "waktu bencana aceh", "belum ada 😢"],
+      replies: [
+        "Aku inget banget tuh waktu di Halim, awal-awal kita sampai pulang pagi. Haha..",
+        "Aku juga inget masa itu. Kerjaannya memang padat, tapi koordinasi dan obrolan kita jadi salah satu hal yang aku ingat.",
+        "Nggak apa-apa. Semoga nanti ada momen seru yang bisa kita ingat bareng. 😊"
+      ]
+    },
+    {
+      emoji: "😆",
+      title: "Menurut kamu, aku ini orangnya gimana?",
+      sub: "Pilih salah satu yaa..",
+      options: ["Serius bgt", "Bisa bikin ketawa", "Masih penuh misteri, perlu dikenal lagi"],
+      replies: [
+        "Hehe, iya. Aku memang cenderung serius kalau soal hal yang penting, termasuk saat ingin mengenal seseorang dengan niat baik.",
+        "Hehe, semoga aku bisa jadi teman ngobrol yang bikin hari kamu sedikit lebih ringan. 😄",
+        "Berarti masih banyak yang perlu kamu kenal dari aku. Pelan-pelan aja, nanti juga ketahuan. 😊"
+      ]
+    },
+    {
+      emoji: "☕",
+      title: "Kalau nanti aku ngajakin kamu jalan, kamu pilih mana?",
+      sub: "Biar aku punya ide buat ajakan berikutnya.",
+      options: ["Cari makanan enak", "Ngobrol santai sambil ngopi", "Kamu yang tentuin, aku ngikut aja"],
+      replies: [
+        "Siap, berarti agenda kuliner harus masuk daftar. Ada rekomendasi tempat?",
+        "Aku juga suka obrolan santai sambil ngopi. Kayaknya seru.",
+        "Oke, nanti aku ajakin kamu nonton Maling Digebukin aja. Haha.."
+      ]
+    },
+    {
+      emoji: "🌷",
+      title: "Kalau aku pengen kenal kamu lebih jauh lagi, gimana?",
+      sub: "Nggak perlu buru-buru. Yang penting sama-sama nyaman.",
+      options: ["Aku mau, kita kenalan lebih jauh 😊", "Boleh, pelan-pelan aja ya", "Aku masih pengen kenal kamu dulu"],
+      replies: [
+        "Makasih ya, aku senang kamu juga mau membuka kesempatan. 😊",
+        "Setuju. Kita jalani pelan-pelan dan tetap saling nyaman.",
+        "Tentu, nggak perlu buru-buru. Aku menghargai kalau kamu ingin saling mengenal lebih dulu."
+      ]
+    }
+  ];
+
+  let current = 0;
+  let answered = false;
+  const answers = [];
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const ambient = $("ambient");
+  const symbols = ["♡", "🌸", "💗", "✿", "💕", "🌷"];
+  if (!reduceMotion) {
+    for (let i = 0; i < 22; i++) {
+      const el = document.createElement("span");
+      el.className = "floaty";
+      el.textContent = symbols[i % symbols.length];
+      el.style.left = (Math.random() * 100) + "%";
+      el.style.fontSize = (13 + Math.random() * 22) + "px";
+      el.style.animationDuration = (13 + Math.random() * 19) + "s";
+      el.style.animationDelay = (-Math.random() * 25) + "s";
+      ambient.appendChild(el);
+    }
+  } else {
+    ambient.remove();
+  }
+
+  function show(id) {
+    sections.forEach(section => $(section).classList.toggle("hidden", section !== id));
+    const target = $(id);
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    if (target) {
+      window.requestAnimationFrame(() => {
+        const heading = target.querySelector("h1, h2");
+        (heading || target).focus({ preventScroll: true });
+      });
+    }
+  }
+
+  function updateControls() {
+    $("backQuestionBtn").classList.toggle("hidden", current === 0);
+    $("changeAnswerBtn").classList.toggle("hidden", !answered);
+    $("nextBtn").classList.toggle("hidden", !answered);
+    $("nextBtn").textContent = current === questions.length - 1 ? "Lihat surat" : "Lanjut ➜";
+  }
+
+  function renderQuestion() {
+    const q = questions[current];
+    const savedAnswer = answers[current];
+    answered = Number.isInteger(savedAnswer);
+    $("progressLabel").textContent = `Pertanyaan ${current + 1} dari ${questions.length}`;
+    $("progressBar").style.width = `${((current + 1) / questions.length) * 100}%`;
+    $("progressTrack").setAttribute("aria-valuenow", String(current + 1));
+    $("qEmoji").textContent = q.emoji;
+    $("question").textContent = q.title;
+    $("questionSub").textContent = q.sub;
+    $("feedback").textContent = answered ? q.replies[savedAnswer] : "";
+    $("options").innerHTML = "";
+
+    q.options.forEach((option, index) => {
+      const button = document.createElement("button");
+      button.className = "option";
+      button.type = "button";
+      button.setAttribute("aria-pressed", String(answered && savedAnswer === index));
+      button.textContent = option;
+      if (answered) {
+        button.disabled = true;
+        button.style.opacity = savedAnswer === index ? "1" : ".58";
+      }
+      button.addEventListener("click", () => {
+        if (answered) return;
+        answers[current] = index;
+        answered = true;
+        [...$("options").children].forEach((b, i) => {
+          b.disabled = true;
+          b.setAttribute("aria-pressed", String(i === index));
+          b.style.opacity = i === index ? "1" : ".58";
+        });
+        $("feedback").textContent = q.replies[index];
+        updateControls();
+      });
+      $("options").appendChild(button);
+    });
+    updateControls();
+  }
+
+  function resetFlow() {
+    current = 0;
+    answers.length = 0;
+    renderQuestion();
+    show("welcome");
+  }
+
+  $("startBtn").addEventListener("click", () => {
+    current = 0;
+    answers.length = 0;
+    renderQuestion();
+    show("quiz");
+  });
+
+  $("backQuestionBtn").addEventListener("click", () => {
+    if (current > 0) {
+      current--;
+      renderQuestion();
+      show("quiz");
+    }
+  });
+
+  $("changeAnswerBtn").addEventListener("click", () => {
+    answered = false;
+    delete answers[current];
+    $("feedback").textContent = "";
+    [...$("options").children].forEach(button => {
+      button.disabled = false;
+      button.style.opacity = "1";
+      button.setAttribute("aria-pressed", "false");
+    });
+    updateControls();
+    const firstOption = $("options").querySelector("button");
+    if (firstOption) firstOption.focus();
+  });
+
+  $("nextBtn").addEventListener("click", () => {
+    if (!answered) return;
+    if (current < questions.length - 1) {
+      current++;
+      renderQuestion();
+      show("quiz");
+    } else {
+      show("letterSection");
+    }
+  });
+
+  $("proposalBtn").addEventListener("click", () => show("proposal"));
+  $("noBtn").addEventListener("click", () => show("decline"));
+
+  function celebrate() {
+    if (reduceMotion) return;
+    const confettiSymbols = ["💗", "💖", "💕", "🌸", "✨", "🌷"];
+    for (let i = 0; i < 55; i++) {
+      const item = document.createElement("span");
+      item.className = "confetti";
+      item.textContent = confettiSymbols[Math.floor(Math.random() * confettiSymbols.length)];
+      item.style.left = Math.random() * 100 + "vw";
+      item.style.fontSize = (15 + Math.random() * 22) + "px";
+      item.style.animationDuration = (2.5 + Math.random() * 2.5) + "s";
+      item.style.animationDelay = (Math.random() * .7) + "s";
+      document.body.appendChild(item);
+      window.setTimeout(() => item.remove(), 6000);
+    }
+  }
+
+  $("yesBtn").addEventListener("click", () => {
+    show("success");
+    celebrate();
+  });
+
+  $("backToWelcome").addEventListener("click", resetFlow);
+  $("replayBtn").addEventListener("click", resetFlow);
+})();
+</script>
+</body>
+</html>

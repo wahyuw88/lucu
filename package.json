@@ -1,0 +1,13 @@
+{
+  "name": "lamaran-wahyu-untuk-khaldaa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web app kejutan interaktif dari Wahyu untuk Khaldaa",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
